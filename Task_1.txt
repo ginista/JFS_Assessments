@@ -1,0 +1,191 @@
+Task-1 :Branching & Looping statements
+
+1. Write a program to print the numbers from 10 to 50 using for loop/while loop.
+
+public class NumberPrinter{
+
+	public static void main(String[] args) {
+		System.out.println("Using for loop : ");
+		for(int i=10;i<=50;i++)
+			System.out.print(i+" ");
+		System.out.println();
+		System.out.println("Using while loop : ");
+		int j =10;
+		while(j<=50) {
+			System.out.print(j+" ");
+			j++;
+		}
+	}
+}
+Output :
+Using for loop : 
+10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 
+Using while loop : 
+10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 
+
+2. Write a program that find a given number is negative or positive.
+
+import java.util.*;
+public class NumberClassifier{
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int number = scan.nextInt();
+		scan.close();
+		if(number>0)
+			System.out.println(number +" is a positive number.");
+		else if(number ==0)
+			System.out.println(number+" is neither positive nor negative.");
+		else
+			System.out.println(number+" is a negative number.");
+
+	}
+
+}
+Output :
+67
+67 is a positive number.
+
+3. Write down the program to reverse the given number using loops.
+
+import java.util.*;
+
+public class ReverseNumber {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int number = scan.nextInt();
+		scan.close();
+		int remainder;
+		int result=0;
+		System.out.println("Original number : "+number);
+		while(number>0) {
+			remainder = number%10;
+			result = result*10+remainder;
+			number = number/10;
+		}
+		System.out.println("Reverse number : "+result);
+	}
+}
+Output:
+765
+Original number : 765
+Reverse number : 567
+
+4.Write a java program to find the smallest number among three numbers.
+
+import java.util.*;
+public class SmallestNumberFinder {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter numbers one  by one : ");
+		int firstNumber = scan.nextInt();
+		int secondNumber = scan.nextInt();
+		int thirdNumber = scan.nextInt();
+		scan.close();
+		if(firstNumber<secondNumber && firstNumber<thirdNumber) {
+			System.out.println(firstNumber+ " is lesser than "+secondNumber+" and "+thirdNumber);
+		}
+		else if(secondNumber<thirdNumber) {
+			System.out.println(secondNumber+" is lesser than "+firstNumber+" and "+thirdNumber);
+		}
+		else {
+			System.out.println(thirdNumber+" is lesser than "+firstNumber+" and "+secondNumber);
+		}
+
+	}
+}
+Output:
+Enter numbers one  by one : 
+1
+23
+45
+1 is lesser than 23 and 45
+
+5. Write a Java program that takes the purchase amount as input and calculates the final payable amount after applying the discount.
+
+import java.util.*;
+
+public class Payment {
+	public static int findDiscount(int percent,int purchaseAmount) {
+		return percent*purchaseAmount/100;
+	}
+
+	public static int findPayable (int discount,int purchaseAmount) {
+		return purchaseAmount-discount;
+	}
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter the purchase amount : ");
+		int purchaseAmount = scan.nextInt();
+		int discount = 0;
+		int payable = 0;
+		if(purchaseAmount < 500) {
+			payable = purchaseAmount;
+			System.out.println("No discount available below the purchse amount Rs.500.\nFinal Payable : "+payable);
+		}
+		else if(purchaseAmount>=500 && purchaseAmount<=1000) {
+			//10% discount
+			discount = findDiscount(10,purchaseAmount);
+			payable = findPayable(discount, purchaseAmount);
+			System.out.println("Discount : "+discount);
+			System.out.println("FinalPayable : "+payable);
+		}
+		else {
+			discount = findDiscount(20,purchaseAmount);
+			payable = findPayable(discount, purchaseAmount);
+			System.out.println("Discount : "+discount);
+			System.out.println("FinalPayable : "+payable);
+		}
+
+	}
+}
+
+Output: 
+Enter the purchase amount : 
+560
+Discount : 56
+FinalPayable : 504
+
+6. Pattern
+5 5 5 5 5
+5 4 4 4 4
+5 4 3 3 3
+5 4 3 2 2
+5 4 3 2 1
+
+import java.util.*;
+
+public class Pattern {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int rows = scan.nextInt();
+                scan.close();
+		for(int i=0;i<rows;i++) {
+			int startNumber = rows;
+			int count = 0;
+			for(int j=1;j<=rows;j++) {
+				System.out.print(startNumber+" ");
+				if(i>count) {
+					count++;
+					startNumber--;
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+
+Output:
+6
+6 6 6 6 6 6 
+6 5 5 5 5 5 
+6 5 4 4 4 4 
+6 5 4 3 3 3 
+6 5 4 3 2 2 
+6 5 4 3 2 1 
+
+
+
+
