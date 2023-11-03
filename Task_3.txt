@@ -1,0 +1,361 @@
+Task-3
+OOPs Programming
+
+1. Design a Java Program that uses OOP principles to model the book.
+   Create two classes. Book and Library. The Book class should have attributes
+   such as bookID, title, author and isAvailable. The Library class should include 
+   an array to store book objects.
+   Provide methods to add book, remove book search book (usingID) and 
+   display books. Write a Java program that demonstrates the use of 
+   these classes and methods by allowing the user to interact with the 
+   library system. 
+ 
+Book.java
+
+public class Book {
+	//data members
+	private int bookID;
+	private String title;
+	private String author;
+	private boolean isAvailable;
+	
+	//Constructor to initialize book attributes
+	public Book(int bookID,String title,String author,boolean isAvailable) {
+		this.bookID = bookID;
+		this.title = title;
+		this.author = author;
+		this.isAvailable = isAvailable;
+	}
+	
+	//Getter and Setter methods for book attributes
+	public int getBookID() {
+		return bookID;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+	public boolean getIsAvailable() {
+		return isAvailable;
+	}
+	
+	public void setBookID(int bookID) {
+		this.bookID = bookID;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public void setIsAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+	@Override
+	public String toString() {
+		return " [bookID=" + bookID + ", title=" + title + ", author=" + author + ", isAvailable="
+				+ isAvailable + "]";
+	}
+}
+
+Library.java
+
+import java.util.*;
+public class Library {
+	//Array of objects to store book details.
+	private ArrayList<Book> books;
+	
+	//Initializes the library with an empty ArrayList of books.
+	public Library() {
+		this.books = new ArrayList<>();
+		
+	}
+	
+	//Method to add a  book to the library
+	public void addBook(Book book) {
+		//Add the book to the library
+		books.add(book);
+		System.out.println("Book added successfully");
+	}
+	//Method to replace a book from the library
+	public void replaceBook(int bookID) {
+		//replace the book name and author of the given bookID from the books.
+		boolean isFound = false;
+		for( Book book:books) {
+			if(book.getBookID() == bookID) {
+				Scanner scan = new Scanner(System.in);
+				System.out.println("Title to replace: ");
+			    String title = scan.nextLine();
+				System.out.println("Author to replace: ");
+			    String author = scan.nextLine();
+				book.setAuthor(author);
+				book.setTitle(title);
+				isFound = true;
+				break;
+			}
+		}
+		//Checking if the book ID is found or not in library.
+		if(!isFound) {
+			System.out.println("Book Id not found.");
+		}
+		else {
+			System.out.println("Book replaced successfully.");
+		}
+		
+	}
+	//Method to display all books in the library
+	public void displayBooks()
+    {
+		for(Book book:books) {
+			System.out.println(book);
+		}
+		}
+}
+
+BookManagementSystem.java
+
+import java.util.*;
+
+public class BookManagementSystem {
+	
+	public static void main(String[] args) {
+		Library library = new Library();
+		// a menu-driven user interface to interact with the library system.
+		try (
+		Scanner scan = new Scanner(System.in)) {
+			boolean exit = false;
+			int choice;
+			//Allow users to add, replace and display books.
+			while(!exit) {
+				System.out.println("Library Management System Menu : ");
+			System.out.println("1.Add a book");
+			System.out.println("2.Replace a book");
+			System.out.println("3.Display a book");
+			System.out.println("4.exit");
+			choice = scan.nextInt();
+			switch(choice) {
+			case 1:
+				// Getting book id, title and author from user.
+				int bookID;
+				String title;
+				String author;
+				System.out.println("Enter book Id: ");
+				bookID = scan.nextInt();
+				System.out.println("Enter the title of the book: ");
+			    scan.nextLine();
+				title = scan.nextLine();
+				System.out.println("Enter the author name: ");
+				author = scan.nextLine();
+				// Adds a new book to the library with the provided book ID, title, author, and a flag (true) indicating availability.
+				library.addBook(new Book(bookID,title,author,true));
+				break;
+			case 2:
+				//Getting book ID from user.
+				System.out.println("Enter the book Id to search");
+				bookID = scan.nextInt();
+				// Requests the replacement of a book in the library based on the provided book ID.
+				library.replaceBook(bookID);
+				break;
+			case 3:
+				// Display the book details in the library.
+				library.displayBooks();
+				break;
+			case 4:
+				System.out.println("Thank you for visiting..");
+				exit=true;
+				break;
+				default:
+					System.out.println("Invalid choice. Please enter valid option.");
+			}
+			
+			}
+		}
+
+	}
+
+}
+
+Output: 
+Library Management System Menu : 
+1.Add a book
+2.Replace a book
+3.Display a book
+4.exit
+1
+Enter book Id: 
+101
+Enter the title of the book: 
+The Complete Reference
+Enter the author name: 
+Herbert
+Book added successfully
+Library Management System Menu : 
+1.Add a book
+2.Replace a book
+3.Display a book
+4.exit
+1
+Enter book Id: 
+102
+Enter the title of the book: 
+To Kill a Mockingbird
+Enter the author name: 
+Harper Lee
+Book added successfully
+Library Management System Menu : 
+1.Add a book
+2.Replace a book
+3.Display a book
+4.exit
+3
+ [bookID=101, title=The Complete Reference, author=Herbert, isAvailable=true]
+ [bookID=102, title=To Kill a Mockingbird, author=Harper Lee, isAvailable=true]
+Library Management System Menu : 
+1.Add a book
+2.Replace a book
+3.Display a book
+4.exit
+2
+Enter the book Id to search
+101
+Title to replace: 
+Pride and Prejudice
+Author to replace: 
+Jane Austen
+Book replaced successfully.
+Library Management System Menu : 
+1.Add a book
+2.Replace a book
+3.Display a book
+4.exit
+3
+ [bookID=101, title=Pride and Prejudice, author=Jane Austen, isAvailable=true]
+ [bookID=102, title=To Kill a Mockingbird, author=Harper Lee, isAvailable=true]
+Library Management System Menu : 
+1.Add a book
+2.Replace a book
+3.Display a book
+4.exit
+4
+Thank you for visiting..
+
+2. Create Interface Taxable with members salesTax =7% and 
+   incomeTax=10.5%.Create abstract method calcTax().
+   a. Create class Employee(empId, name, salary) and implement
+   Taxable to calculate income Tax on yearly salary.
+   b. Create class Product(pid,price,quantity) and implement Taxable
+   to calculate salesTax on unit price of product.
+   c. Create class for main method (say XYZ), accept employee information
+   and a product information from user and print income tax and sales tax respectively.
+ 
+Taxable.java
+
+public interface Taxable {
+            double salesTax =0.07; //sales tax rate
+            double incomeTax = 0.105;//income tax rate
+            double calcTax();
+}
+
+Employee.java
+
+//employee class implements taxable interface
+public class Employee implements Taxable {
+	//data members
+   private int empID;
+   private String name;
+   private double salary;
+   
+   //Constructor to initialize employee class attributes.
+   public Employee(int empID,String name, double salary) {
+	   this.empID = empID;
+	   this.name = name;
+	   this.salary = salary;
+   }
+   
+   //method to calculate income tax on yearly salary
+ @Override
+  public double calcTax() {
+	double incomeTaxAmount = incomeTax * salary;
+	return incomeTaxAmount;
+	
+}
+
+@Override
+public String toString() {
+	return "[empID=" + empID + ", name=" + name + ", salary=" + salary + ", Income Tax Amount=" + calcTax()
+			+ "]";
+}
+}
+
+Product.java
+
+//product class implements taxable interface.
+public class Product implements Taxable {
+	//data members
+ private int pid;
+ private double price;
+ private int quantity;
+ 
+ //constructor to initialize product class attributes.
+ public Product(int pid,double price,int quantity) {
+	 this.pid = pid;
+	 this.price = price;
+	 this.quantity = quantity;
+ }
+ 
+ //method to calculate sales tax on unit price of product.
+@Override
+public double calcTax() {
+	double unitPrice = price / quantity ;
+	return unitPrice*salesTax;
+	
+}
+
+@Override
+public String toString() {
+	return "[pid=" + pid + ", price=" + price + ", quantity=" + quantity + ", Sales Tax on unit price of product=" + calcTax()
+			+ "]";
+}
+}
+
+Main.java
+
+public class Main {
+
+	public static void main(String[] args) {
+         //create a object of employee class and initialize attributes empID, name, salary.
+		Taxable employee = new Employee(101,"Antanin Ginista",65000);
+		System.out.println(employee);//printing the details using toString method.
+		Taxable employee_1 = new Employee(102,"Sheela",75000);
+		System.out.println(employee_1);
+		
+		//Create a object of product class and initialize the attributes pid,price, quantity.
+		Taxable product = new Product(1,975,20);
+		System.out.println(product);
+		Taxable product_1 = new Product(2,285,8);
+		System.out.println(product_1);
+
+
+	}
+
+}
+
+Output:
+[empID=101, name=Antanin Ginista, salary=65000.0, Income Tax Amount=6825.0]
+[empID=102, name=Sheela, salary=75000.0, Income Tax Amount=7875.0]
+[pid=1, price=975.0, quantity=20, Sales Tax on unit price of product=3.4125000000000005]
+[pid=2, price=285.0, quantity=8, Sales Tax on unit price of product=2.4937500000000004]
+
+
+
+
+
+
+
+
