@@ -1,0 +1,149 @@
+Task - 5 Java Advance
+
+1. Write a program using map() method to convert a list of strings into uppercase
+   If the given list is: Stream names = Stream.of("aBc",d,"ef")
+ 
+WordCapitalizer.java
+
+import java.util.*;
+import java.util.stream.*;
+
+public class WordCapitalizer {
+	
+	public static void main(String[] args) {
+		// Creating a Stream of strings
+		Stream<String> names = Stream.of("aBc","d","ef");
+		
+		// Using the map operation to transform each string to uppercase
+		  List<String> upperCase = names.map(String::toUpperCase)
+				  // Collecting the transformed strings into a List
+                  .collect(Collectors.toList());
+           
+		// Displaying the resulting List of uppercase strings
+		  System.out.println(upperCase);
+			
+	}
+}
+
+Output:
+
+[ABC, D, EF]
+
+2. Write a program to check whether the Strings in the list are empty or not 
+  and print the list having non-empty strings. 
+  If the given list is Liststrings = Arrays.asList("abc","","bc","efg","abcd",
+  "","jkl"
+ 
+StringEmptyChecker.java
+
+import java.util.*;
+
+public class StringEmptyChecker{
+
+	public static void main(String[] args) {
+		List<String> Liststrings = Arrays.asList("abc","","bc","efg","abcd","","jkl");
+	
+		 Liststrings.stream() // Converts the list to a Stream
+         .filter(str -> !str.isEmpty()) // Filters out empty strings
+         .forEach(System.out::println); // Prints non-empty strings
+		 
+		
+	}
+}
+
+Output:
+
+abc
+bc
+efg
+abcd
+jkl
+
+3. You are a teacher in school. In your class there are 10 students
+   you have decided to give special gifts to those students whose 
+  names start with 'A' you are asked to separate those students
+  with the help of java program.
+  Requirement
+  Use List interface to store the student name
+  Use a lambda expression and the stream API to filter the students
+
+StudentNameFilter.java
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class StudentNameFilter {
+
+	public static void main(String[] args) {
+		// List of student names
+		List<String> studentNames = Arrays.asList("Antanin","Ginista","Aakash","Nithya","Nikitha","Raju","Ravi","Suresh","Rajesh","Aarya");
+		
+		// Filter students whose names start with "A"
+		List<String> studentsWithSpecialGifts  = studentNames.stream()
+				.filter(name -> name.startsWith("A"))  // Filter students whose names start with "A"
+				.collect(Collectors.toList()); // Collect the filtered names into a list
+		
+		// Display students with names starting with "A"
+		System.out.println(studentsWithSpecialGifts );
+
+	}
+}
+
+Output:
+
+[Antanin, Aakash, Aarya]
+
+4. Rajesh has been given a task to create an app which takes the user's
+   birthdate as input and calculates their age, you have to help him to build this 
+   app using the java.time.LocalDate class.
+ 
+   Input:
+   Enter your birthdate (yyyy-mm-dd):1990-05-15
+  
+   Output:
+   Your age is: 33 years, 4 months, and 13 days.
+ 
+  AgeCalculator.java
+
+ package task_5.question4;
+ import java.time.LocalDate;
+ import java.time.Period;
+ import java.time.format.DateTimeParseException;
+ import java.util.*;
+ import java.util.stream.Stream;
+
+ public class AgeCalculator{
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		try {
+			System.out.println("Enter your birthdate (yyyy-mm-dd) :");
+			String birthDate = scan.nextLine();
+			
+			// Parses the input string to LocalDate
+			LocalDate dob = LocalDate.parse(birthDate);
+			
+			//Gets the current date
+			LocalDate curDate = LocalDate.now();  
+			
+			// Calculate age based on birthdate and current date
+			int years = Period.between(dob, curDate).getYears();
+			int months = Period.between(dob, curDate).getMonths();
+			int days = Period.between(dob, curDate).getDays();
+			
+			// Display the calculated age
+			System.out.println("Your age is: "+years+" years, "+months+" months, "+days+" days.");
+		} catch (DateTimeParseException  e) {
+			System.out.println("Exception: "+e);
+		}
+	}
+}
+
+Output:
+
+Enter your birthdate (yyyy-mm-dd) :
+1999-09-24
+Your age is: 24 years, 1 months, 21 days.
+
+
