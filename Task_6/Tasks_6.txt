@@ -1,0 +1,33 @@
+MySQL Task
+
+1.create table Empl(empno int  not null primary key,
+ename varchar(50),
+job enum("clerk","salesman","manager","Analyst","President"),
+mgr int,
+hiredate date,
+sal double,
+comm double,
+deptno int);
+
+
+insert into Empl(empno,ename,job,mgr,hiredate,sal,deptno) values(8369,"Smith","clerk",8902,"1990-12-18","800.00",20);
+insert into Empl(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(8499,"Anya","Salesman",8698,"1991-02-20","1600.00","300.00",30);
+insert into Empl(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(8521,"Seth","Salesman",8698,"1991-02-22","1250.00","500.00",30);
+
+insert into Empl(empno,ename,job,mgr,hiredate,sal,deptno) values(8566,"Mahadevan","Manager",8902,"1991-04-02","2985.00",20);
+insert into Empl(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(8654,"Momin","Salesman",8698,"1991-09-28","1250.00","1400.00",30);
+insert into Empl(empno,ename,job,mgr,hiredate,sal,deptno) values(8698,"Bina","Manager",8839,"1991-05-01","2850.00",30);
+insert into Empl(empno,ename,job,mgr,hiredate,sal,deptno) values(8882,"Shivansh","Manager",8839,"1991-06-09","2450.00",30);
+insert into Empl(empno,ename,job,mgr,hiredate,sal,deptno) values(8888,"Scott","Analyst",8566,"1992-12-09","3000.00",30);
+insert into Empl(empno,ename,job,hiredate,sal,deptno) values(8839,"Amir","President","1991-11-18","1250.00",30);
+insert into Empl(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(8844,"Kuldeep","Salesman",8698,"1991-09-08","1500.00","0.00",30);
+
+select * from Empl;
+
+
+A. select ename,sal from Empl where sal>=2200;
+B. select * from Empl where comm  is NULL;
+C. select ename,sal from Empl where sal<2500 or sal>4000;
+D. select ename,job,sal from Empl where mgr is null;
+E. select ename from Empl where lower(ename) like '__a%';
+F. select ename from Empl where lower(ename) like '%t';
