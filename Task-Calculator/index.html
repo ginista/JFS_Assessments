@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculator</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1 id="title">Calculator</h1>
+        <p id="description">Calculator Task</p>
+        <div class="container">
+            <div class="calculator">
+                <form>
+                    <div class="display">
+                        <input type="text" name="display" id="result">
+                    </div>
+                     <div>
+                        <button type="button" id="clear" onclick="clearDisplay()" class="operator">AC</button>
+                        <button type="button" onclick="deleteLastCharacter()" class="operator">DE</button>
+                        <button type="button" onclick="appendCharacter('.')" class="operator">.</button>
+                        <button type="button" onclick="appendCharacter('/')" class="operator">/</button>
+                    </div>
+                    <div>
+                        <button type="button" id="7" value="7" onclick="appendCharacter('7')">7</button>
+                        <button type="button" id="8" value="8" onclick="appendCharacter('8')">8</button>
+                        <button type="button" id="9" value="9" onclick="appendCharacter('9')">9</button>
+                        <button type="button" value="*" onclick="appendCharacter('*')" class="operator">*</button>
+                    </div>
+                    <div>
+                        <button type="button" id="4" value="4" onclick="appendCharacter('4')">4</button>
+                        <button type="button" id="5" value="5" onclick="appendCharacter('5')">5</button>
+                        <button type="button" id="6" value="6" onclick="appendCharacter('6')">6</button>
+                        <button type="button" value="-" id="subtract" onclick="appendCharacter('-')" class="operator">-</button>
+                    </div>
+                    <div>
+                        <button type="button" value="1" id="1" onclick="appendCharacter('1')">1</button>
+                        <button type="button" value="2" id="2" onclick="appendCharacter('2')">2</button>
+                        <button type="button" value="3" id="3" onclick="appendCharacter('3')">3</button>
+                        <button type="button" value="+" id="add" onclick="appendCharacter('+')" class="operator">+</button>
+                    </div>
+                    <div>
+                        <button type="button" value="0" onclick="appendCharacter('0')">0</button>
+                        <button type="button" value="%" onclick="appendCharacter('%')">%</button>
+                        <button type="button" id="equal" onclick="evaluateExpression()" class="equal operator">=</button>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>
+    </body>
+</html>
